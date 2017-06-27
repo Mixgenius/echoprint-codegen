@@ -81,7 +81,7 @@ install: all
 	mkdir -p $(DESTDIR)$(LIBDIR)
 ifeq ($(UNAME),Darwin)
 	install -m 755 libcodegen.$(VERSION).dylib $(DESTDIR)$(LIBDIR)
-	cd $(DESTDIR)$(LIBDIR) && ln -fs libcodegen.$(VERSION) libcodegen.$(VERSION_MAJ).dylib
+	cd $(DESTDIR)$(LIBDIR) && ln -fs libcodegen.$(VERSION).dylib libcodegen.$(VERSION_MAJ).dylib
 	cd $(DESTDIR)$(LIBDIR) && ln -fs libcodegen.$(VERSION_MAJ).dylib libcodegen.dylib
 else
 	install -m 755 $(LIBNAME).$(VERSION) $(DESTDIR)$(LIBDIR)
