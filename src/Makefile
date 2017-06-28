@@ -81,12 +81,12 @@ install: all
 	mkdir -p $(DESTDIR)$(LIBDIR)
 ifeq ($(UNAME),Darwin)
 	install -m 755 libcodegen.$(VERSION).dylib $(DESTDIR)$(LIBDIR)
-	ln -fs $(DESTDIR)$(LIBDIR)/libcodegen.$(VERSION) $(DESTDIR)$(LIBDIR)/libcodegen.$(VERSION_MAJ).dylib
-	ln -fs $(DESTDIR)$(LIBDIR)/libcodegen.$(VERSION_MAJ).dylib $(DESTDIR)$(LIBDIR)/libcodegen.dylib
+	cd $(DESTDIR)$(LIBDIR) && ln -fs libcodegen.$(VERSION).dylib libcodegen.$(VERSION_MAJ).dylib
+	cd $(DESTDIR)$(LIBDIR) && ln -fs libcodegen.$(VERSION_MAJ).dylib libcodegen.dylib
 else
 	install -m 755 $(LIBNAME).$(VERSION) $(DESTDIR)$(LIBDIR)
-	ln -fs $(DESTDIR)$(LIBDIR)/$(LIBNAME).$(VERSION) $(DESTDIR)$(LIBDIR)/$(SONAME)
-	ln -fs $(DESTDIR)$(LIBDIR)/$(SONAME) $(DESTDIR)$(LIBDIR)/$(LIBNAME)
+	cd $(DESTDIR)$(LIBDIR) && ln -fs $(LIBNAME).$(VERSION) $(SONAME)
+	cd $(DESTDIR)$(LIBDIR) && ln -fs $(SONAME) $(LIBNAME)
 endif
 
 .PHONY: clean all install
